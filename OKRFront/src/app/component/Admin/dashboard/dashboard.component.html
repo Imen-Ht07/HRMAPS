@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>PFE</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+
+    
+    <link rel="icon" href="/assets/admin/images/favicon.ico" type="image/x-icon">
+    <!-- vendor css -->
+    <link rel="stylesheet" href="/assets/admin/css/style.css">
+</head>
+<body style=" background: linear-gradient(80deg, #be1526 3%, #526274 100%);" >
+	<!-- [ navigation menu ] start -->
+    <nav class="pcoded-navbar" style=" height: 125%;  background:linear-gradient(80deg, #be1526 3%, #526274  100%)">	
+        <div class="navbar-wrapper  ">
+        <div class="navbar-content scroll-div " >
+            <div >
+                <div class="main-menu-header">
+                    <img class="img-radius" src="../../../../assets/logo.png" alt="User-Profile-Image">
+                    <div class="user-details">
+                        <div id="more-details" class="text-white"> HRMAPS <i class="fa fa-caret-down"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<br><br>
+            <ul class="nav pcoded-inner-navbar contain "id="tit1">
+                <li class="nav-item">
+                    <a href="Admin/dashboard" class="nav-link ">
+                  <span class="pcoded-mtext mx-2">Tableau de bord</span></a>
+                </li>
+                
+           <li class="nav-item pcoded-hasmenu">
+              <a href="/manager" class="nav-link ">
+                 <span class="pcoded-mtext mx-2"> Managers</span></a>
+          </li>
+          <li class="nav-item pcoded-hasmenu">
+            <a href="/employe" class="nav-link ">
+               <span class="pcoded-mtext mx-2"> Employés</span></a>
+    <li class="nav-item pcoded-hasmenu">
+        <a href="/objectif" class="nav-link ">
+           <span class="pcoded-mtext mx-2"> Objectifs</span></a>
+    </li>
+    <li class="nav-item pcoded-hasmenu">
+        <a href="/calender" class="nav-link ">
+           <span class="pcoded-mtext mx-2"> Calendrier </span></a>
+    </li>	
+</ul>
+        </div>
+    </div>
+</nav>
+<!-- [ navigation menu ] end -->
+	<!-- [ Header ] start -->
+	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
+		<div class="m-header">
+					<a class="mobile-menu" id="mobile-collapse" href="Admin/dashboard"><span></span></a>
+					<a href="#!" class="b-brand">
+					</a>
+					<a href="#!" class="mob-toggler" >
+						<i class="feather icon-more-vertical"></i>
+					</a>
+				</div>
+				<div class="collapse navbar-collapse">
+					<ul class="navbar-nav mr-auto">
+                        
+						<li class="nav-item" id="logout">
+							<a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
+							<div class="search-bar">
+								<input type="text" id="m-search" class="form-control"  
+                                placeholder="Rechercher...">
+								<button type="button" class="close" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						</li>
+					</ul>
+					<ul class="navbar-nav ml-auto">
+                      
+						<li>
+							<div class="dropdown" id="logout">
+                                <img  class="ic mr-1" src="../../../../assets/photo.png">
+                                <!--APP PROFILE-->
+                                <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                                    <!--********Ajoutez les routes nessaire *******************-->
+                                    <div class="nav-item dropdown" *ngIf="userProfile">
+                                        <a class="nav-link dropdown-toggle" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                          <i class="fa fa-user"></i>
+
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                          <li><a class="dropdown-item" href="/" (click)="logOut()" >Déconnexion</a></li>
+                                          <li><a class="dropdown-item"  *ngIf=" isAdmin()" routerLink="/profil/{{userProfile._id}}"> Profil</a></li>
+                                          <li><a class="dropdown-item"  *ngIf=" isAdmin()" routerLink="/changepass/{{userProfile._id}}"> Changer le mot de passe</a></li>
+                                         
+                                        </ul>
+                                      </div>
+								<a class="dropdown-toggle mr-5" href="#" data-toggle="dropdown"></a>
+								<div class="dropdown-menu dropdown-menu-right notification">
+									<div class="noti-head" >
+										<h6 class="d-inline-block m-b-0"></h6>
+									</div>
+								</div>
+						<li>
+							<div class="dropdown drp-user">
+								<app-logout></app-logout>
+							</div>
+						</li>
+				</div>
+                </div>
+                </li>
+                </ul>
+                </div>
+			
+	</header>
+	<!-- [ Header ] end -->
+<!-- [ Main Content ] start -->
+<div class="pcoded-main-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header container">
+            <div class="page-block ">
+                <div class="row align-items-center">
+                    <div class="col-md-16">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10" id="tit">Tableau de bord</h5>
+                        </div>
+                        <ul class="breadcrumb" id="tit">
+                            <li class="breadcrumb-item"><a href="Admin/dashboard"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="Admin/dashboard">Tableau de bord</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <!-- [ breadcrumb ] end -->
+       <!-- [ Main Content ] start -->
+<div class="row" style="padding: 80px;">
+    <div class="col-md-5 mb-4">
+        <mat-card style="background: #526274;">
+            <mat-card-content>
+                <div class="row align-items-center">
+                    <div class="col-8" >
+                        <h1 class="text-c-green color">{{ nbrM }}</h1>
+                        <h3 style="color:white;">Manager</h3>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-md-5 mb-4">
+        <mat-card style="background:  #637386a8;">
+            <mat-card-content>
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h1 class="text-c-green color">{{ nbrE }} </h1>
+                        <h3 style="color:white;">Employé</h3>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-md-5">
+        <mat-card>
+            <mat-card-content>
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h3  style="color:gray;">Objectifs </h3>
+                        <div *ngIf="objectiveCounts">
+                            <p style="color: #be1526; font-size: 25px;"> Non commencés : {{ objectiveCounts['Non commencé'] }}</p>
+                            <p style="color: #e6751f;font-size: 25px;"> En cours : {{ objectiveCounts['En cours'] }}</p>
+                            <p style="color: #75e61f;font-size: 25px;"> Terminés : {{ objectiveCounts['Terminé'] }}</p>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-md-5 mb-4">
+        <mat-card>
+            <mat-card-content>
+                <div class="row align-items-center">
+                    <div class="col-8">
+                        <h3  style="color:gray;">Résultat Clé </h3>
+                        <div *ngIf="resultatCounts">
+                            <p style="color: #be1526; font-size: 25px;"> Non commencés : {{ resultatCounts['Non commencé'] }}</p>
+                            <p style="color: #e6751f;font-size: 25px;"> En cours : {{ resultatCounts['En cours'] }}</p>
+                            <p style="color: #75e61f;font-size: 25px;"> Terminés : {{ resultatCounts['Terminé'] }}</p>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    </div>
+        </div>
+        </div>
+        </body>
+        </html>
+        
+                 
+
+
