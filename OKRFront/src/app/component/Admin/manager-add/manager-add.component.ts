@@ -34,22 +34,21 @@ export class ManagerAddComponent implements OnInit {
       }
       return null;
     };
-
-    // Custom validator function for date format (YYYY-MM-DD)
-    const dateFormatValidator: ValidatorFn = (control: AbstractControl) => {
-      const date: string = control.value;
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
-        return { invalidDateFormat: true };
-      }
-      return null;
-    };
+      //email ends with "@hrmaps.fr"
+      const emailValidator: ValidatorFn = (control: AbstractControl) => {
+        const email: string = control.value;
+        if (!email.endsWith('@hrmaps.fr')) {
+          return { invalidEmail: true };
+        }
+        return null;
+      };
 
     this.managerForm = this.formBuilder.group({
       nom: [this.data?.nom || '', Validators.required],
       prenom: [this.data?.prenom || '', Validators.required],
       tel: [this.data?.tel || '', [Validators.required, telephoneValidator]], // Apply telephone validator
-      email: [this.data?.email || '', [Validators.required, Validators.email]], // Email validation remains the same
-      dateEmbauche: [this.data?.dateEmbauche || '', [Validators.required, dateFormatValidator]], // Apply date format validator
+      email: [this.data?.email || '', [Validators.required, Validators.email, emailValidator]], // Email validation remains the same
+      dateEmbauche: [this.data?.dateEmbauche || '', [Validators.required]], // Apply date format validator
       departement: [this.data?.departement || '', Validators.required],
       password: [this.data?.password || '', Validators.required],
       role: [this.data?.role || 'Manager'],
