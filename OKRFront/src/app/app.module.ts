@@ -30,7 +30,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 //components
 import { ObjectifComponent } from 'src/app/component/Manager/objectif/objectif.component';
-import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
 import { NotfoundComponent } from './component/notfound/notfound.component';
 import { ProfilComponent } from './component/profil/profil.component';
@@ -53,7 +52,6 @@ import { CalenderComponent } from './component/Employe/calender/calender.compone
   declarations: [
     AppComponent,
     ObjectifComponent,
-    HomeComponent,
     LoginComponent,
     NotfoundComponent,
     ProfilComponent,

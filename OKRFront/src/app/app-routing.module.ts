@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 // Components
 import { ObjectifComponent } from 'src/app/component/Manager/objectif/objectif.component';
-import { HomeComponent } from './component/home/home.component';
+
 import { LoginComponent } from './component/login/login.component';
 import { NotfoundComponent } from './component/notfound/notfound.component';
 import { EmployeComponent } from './component/Admin/employe/employe.component';
