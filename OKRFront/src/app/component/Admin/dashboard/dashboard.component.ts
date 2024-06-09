@@ -3,7 +3,7 @@ import { ManagerService } from '../../../services/manager.service';
 import { EmployeService } from '../../../services/employe.service';
 import { ObjectifService } from 'src/app/services/objectif.service';
 import { ResultatService } from 'src/app/services/resultat.service';
-
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -27,7 +27,8 @@ export class DashboardComponent implements OnInit {
     private ManagerService:ManagerService ,
      private EmployeService : EmployeService,
     private ObjectifService:ObjectifService,
-    private ResultatService:ResultatService
+    private ResultatService:ResultatService,
+    private UserService:UserService
   ) {}
 
    ngOnInit(): void {
@@ -78,8 +79,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  isAdmin(): boolean {
-    const role = localStorage.getItem('role'); // Retrieve the role from localStorage
-    return role === 'Admin';
+  isADmin(): boolean {
+    return this.UserService.isAdmin();
   }
 }

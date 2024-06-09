@@ -19,16 +19,14 @@ const routes: Routes = [
   { path: 'notfound', component: NotfoundComponent },
   { path: 'profile/:id', component: ProfilComponent },
   { path: 'changepass/:id', component: ChangePassComponent },
+  { path: 'home', component: DashboardComponent},
   // EMPLOYE MANAGER
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard], data: { roles: ['Manager', 'Employee'] } },
   { path: 'objectif', component: ObjectifComponent, canActivate: [AuthGuard], data: { roles: ['Manager', 'Employee','Admin'] } },
   { path: 'resultat/:id', component: ResultatComponent, canActivate: [AuthGuard], data: { roles: ['Manager', 'Employee','Admin'] } },
   { path: 'calender', component: CalenderComponent, canActivate: [AuthGuard], data: { roles: ['Manager', 'Employee','Admin'] } },
   // Admin
   { path: 'employe', component: EmployeComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'manager', component: ManagerComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
-  { path: 'Admin/dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
-  // Wildcard route
   { path: '**', redirectTo: 'notfound' },
 ];
 

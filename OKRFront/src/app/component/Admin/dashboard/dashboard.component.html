@@ -32,15 +32,15 @@
 <br><br>
             <ul class="nav pcoded-inner-navbar contain "id="tit1">
                 <li class="nav-item">
-                    <a href="Admin/dashboard" class="nav-link ">
+                    <a href="/home" class="nav-link ">
                   <span class="pcoded-mtext mx-2">Tableau de bord</span></a>
                 </li>
                 
-           <li class="nav-item pcoded-hasmenu" >
+           <li class="nav-item pcoded-hasmenu" *ngIf="isADmin()">
               <a href="/manager" class="nav-link ">
                  <span class="pcoded-mtext mx-2"> Managers</span></a>
           </li>
-          <li class="nav-item pcoded-hasmenu">
+          <li class="nav-item pcoded-hasmenu" *ngIf="isADmin()">
             <a href="/employe" class="nav-link ">
                <span class="pcoded-mtext mx-2"> Employés</span></a>
     <li class="nav-item pcoded-hasmenu">
@@ -59,7 +59,7 @@
 		<!-- [ Header ] start -->
         <header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
             <div class="m-header">
-                        <a class="mobile-menu" id="mobile-collapse" href="Admin/dashboard"><span></span></a>
+                        <a class="mobile-menu" id="mobile-collapse" href="/home"><span></span></a>
                         <a href="#!" class="b-brand">
                         </a>
                         <a href="#!" class="mob-toggler" >
@@ -116,8 +116,8 @@
                             <h5 class="m-b-10" id="tit">Tableau de bord</h5>
                         </div>
                         <ul class="breadcrumb" id="tit">
-                            <li class="breadcrumb-item"><a href="Admin/dashboard"><i class="feather icon-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="Admin/dashboard">Tableau de bord</a></li>
+                            <li class="breadcrumb-item"><a href="/home"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="/home">Tableau de bord</a></li>
                         </ul>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
        <!-- [ Main Content ] start -->
 <div class="row" style="padding: 80px;">
     <div class="col-md-5 mb-4">
-        <mat-card style="background: #526274;">
+        <mat-card style="background: #526274;" *ngIf="isADmin()">
             <mat-card-content>
                 <div class="row align-items-center">
                     <div class="col-8" >
@@ -140,7 +140,7 @@
         </mat-card>
     </div>
     <div class="col-md-5 mb-4">
-        <mat-card style="background:  #637386a8;">
+        <mat-card style="background:  #637386a8;" *ngIf="isADmin()">
             <mat-card-content>
                 <div class="row align-items-center">
                     <div class="col-md-8">
