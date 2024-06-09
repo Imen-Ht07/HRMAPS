@@ -122,4 +122,43 @@
        <br>
       <br>
         <!-- [ breadcrumb ] end -->
-<!--********************************************************************************************************************-->
+<!--********************************************************************************************************************-->    <div class="col-md-5">
+  <!-- [ Main Content ] start -->
+  <div class="container" style="padding: 80px;">
+    <div class="row mb-4">
+        <!-- Objectifs Card -->
+            <mat-card  style="align-items: center;">
+                <mat-card-content>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <h3 style="color:gray;">Objectifs</h3>
+                            <div *ngIf="objectiveCounts">
+                                <p style="color: #be1526; font-size: 25px;">Non commencés : {{ objectiveCounts['Non commencé'] }}</p>
+                                <p style="color: #e6751f; font-size: 25px;">En cours : {{ objectiveCounts['En cours'] }}</p>
+                                <p style="color: #75e61f; font-size: 25px;">Terminés : {{ objectiveCounts['Terminé'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+    </div>
+    <div class="row mb-4">
+        <!-- Résultat Clé Card -->
+            <mat-card style="align-items: center;">
+                <mat-card-content>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <h3 style="color:gray;">Résultat Clé</h3>
+                            <div *ngIf="resultatCounts">
+                                <p style="color: #be1526; font-size: 25px;">Non commencés : {{ resultatCounts['Non commencé'] }}</p>
+                                <p style="color: #e6751f; font-size: 25px;">En cours : {{ resultatCounts['En cours'] }}</p>
+                                <p style="color: #75e61f; font-size: 25px;">Terminés : {{ resultatCounts['Terminé'] }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    </div>
+</div>

@@ -90,11 +90,15 @@ export class UserService {
     return role === 'Admin';
   }
 
-  isManagerOrEmploye(): boolean {
+  isManagerOrAdmin(): boolean {
     const role = localStorage.getItem('role');
-    return role === 'Employe' || role === 'Manager';
+    return role === 'Admin' || role === 'Manager';
   }
 
+isEmploye(): boolean {
+  const role = localStorage.getItem('role');
+  return role === 'Employee';
+}
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }

@@ -8,6 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Resultat } from 'src/app/models/resultat';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-resultat',
   templateUrl: './resultat.component.html',
@@ -26,6 +27,7 @@ export class ResultatComponent implements OnInit {
     private resultatService: ResultatService,
     private snackBar: MatSnackBar,
     private route: ActivatedRoute,
+    private userService: UserService
    
   ) {}
 
@@ -33,6 +35,12 @@ export class ResultatComponent implements OnInit {
     const  objectifID = this.route.snapshot.paramMap.get('id');
     this.loadResultats(objectifID!);
 
+  }
+  isAdmin(): boolean {
+    return this.userService.isAdmin();
+  }
+  isAdOrEm(): boolean {
+    return this.userService.isManagerOrAdmin();
   }
 
   loadResultats(objectifID: string): void {

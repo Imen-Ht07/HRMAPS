@@ -35,16 +35,24 @@
                   <a href="/home" class="nav-link ">
                 <span class="pcoded-mtext mx-2">Tableau de bord</span></a>
               </li>
-  <li class="nav-item pcoded-hasmenu">
-      <a href="/objectif" class="nav-link ">
-         <span class="pcoded-mtext mx-2"> Objectifs</span></a>
-  </li>
-  <li class="nav-item pcoded-hasmenu">
-      <a href="/calender" class="nav-link ">
-         <span class="pcoded-mtext mx-2"> Calendrier </span></a>
-  </li>	
-</ul>
-      </div>
+              <li class="nav-item pcoded-hasmenu" *ngIf="isADmin()">
+                <a href="/manager" class="nav-link ">
+                   <span class="pcoded-mtext mx-2"> Managers</span></a>
+            </li>
+            <li class="nav-item pcoded-hasmenu"  *ngIf="isADmin()">
+              <a href="/employe" class="nav-link ">
+                 <span class="pcoded-mtext mx-2"> Employés</span></a>
+                 </li>
+      <li class="nav-item pcoded-hasmenu">
+          <a href="/objectif" class="nav-link ">
+             <span class="pcoded-mtext mx-2"> Objectifs</span></a>
+      </li>
+      <li class="nav-item pcoded-hasmenu">
+          <a href="/calender" class="nav-link ">
+             <span class="pcoded-mtext mx-2"> Calendrier </span></a>
+      </li>	
+  </ul>
+</div>
   </div>
 </nav>
 <!-- [ navigation menu ] end -->
@@ -121,7 +129,7 @@
 <mat-toolbar >
     <span>Objectifs</span>
     <span class="example-spacer"></span>
-    <button mat-raised-button (click)="openAddObjectifDialog()">
+    <button mat-raised-button (click)="openAddObjectifDialog()" *ngIf="!isEmploye()">
       Ajouter un objectif
     </button>
   </mat-toolbar>
@@ -164,10 +172,10 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Actions </th>
           <td mat-cell *matCellDef="let row">
-            <button mat-icon-button color="primary" (click)="openUpdateObjectifDialog(row)">
+            <button mat-icon-button color="primary" (click)="openUpdateObjectifDialog(row)" *ngIf="!isEmploye()">
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button color="warn" (click)="deleteObjectif(row._id)">
+            <button mat-icon-button color="warn" (click)="deleteObjectif(row._id)"  *ngIf="!isEmploye()">
               <mat-icon>delete</mat-icon>
             </button>
             <button mat-icon-button color="muted" [routerLink]="['/resultat', row._id]">

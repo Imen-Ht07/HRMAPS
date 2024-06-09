@@ -1,18 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ObjectifService } from '../../../services/objectif.service';
-import { ObjAddEditComponent } from 'src/app/component/Employe/obj-add-edit/obj-add-edit.component';
+import { ObjAddEditComponent } from 'src/app/component/Manager/obj-add-edit/obj-add-edit.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-objectif',
   templateUrl: './objectif.component.html',
   styleUrls: ['./objectif.component.css']
 })
 export class ObjectifComponent implements OnInit {
+
   displayedColumns: string[] = 
   ['description', 'date_limite', 'etat_avancement', 'niveau', 'actions'];
   dataSource!: MatTableDataSource<any>;
@@ -23,13 +24,20 @@ export class ObjectifComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private objectifService: ObjectifService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
     this.loadObjectifs();
-  }
 
+  }
+  isEmploye(): boolean {
+    return this.userService.isEmploye();
+  }
+  isADmin(): boolean {
+    return this.userService.isAdmin();
+  }
   loadObjectifs(): void {
     this.objectifService.getAllObjectifs().subscribe({
       next: (res) => {

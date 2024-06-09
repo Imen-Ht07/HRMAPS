@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
 import { ManagerService } from '../../../services/manager.service'; 
 import { EmployeService } from '../../../services/employe.service';
 import { ObjectifService } from 'src/app/services/objectif.service';
 import { ResultatService } from 'src/app/services/resultat.service';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -22,21 +22,15 @@ export class DashboardComponent implements OnInit {
     'En cours': 0,
     'Terminé': 0
     };
-  userProfile: any;
-  role: string = '';
-  email: string = '';
-  error: string = '';
+
   constructor(
-    private userService: UserService , 
     private ManagerService:ManagerService ,
      private EmployeService : EmployeService,
     private ObjectifService:ObjectifService,
     private ResultatService:ResultatService
-  ){}
+  ) {}
 
    ngOnInit(): void {
-     this.userService.signout();
-     this.getUserProfile();
      this.getNbEmploye();
      this.getNbManager();
      this.getNbObjectif();
@@ -84,25 +78,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  getUserProfile(): void {
-    this.userService.getCurrentUserProfile().subscribe(
-      (response) => {
-        this.userProfile = response;
-        this.role = this.userProfile.role; 
-        this.email = this.userProfile.email; 
-      },
-      (error) => {
-        this.error = error;
-      }
-    );
-  }
   isAdmin(): boolean {
     const role = localStorage.getItem('role'); // Retrieve the role from localStorage
     return role === 'Admin';
-  }
-  async logOut() {
-    if (confirm("Do you want to log out?")) {
-      await this.userService.signout()
-    }
   }
 }

@@ -34,7 +34,7 @@ import { HomeComponent } from './component/home/home.component';
 import { LoginComponent } from './component/login/login.component';
 import { NotfoundComponent } from './component/notfound/notfound.component';
 import { ProfilComponent } from './component/profil/profil.component';
-import { ObjAddEditComponent } from './component/Employe/obj-add-edit/obj-add-edit.component';
+import { ObjAddEditComponent } from './component/Manager/obj-add-edit/obj-add-edit.component';
 import { EmployeComponent } from './component/Admin/employe/employe.component';
 import { EmployeAddComponent } from 'src/app/component/Admin/employe-add/employe-add.component';
 import { ManagerAddComponent } from './component/Admin/manager-add/manager-add.component';
