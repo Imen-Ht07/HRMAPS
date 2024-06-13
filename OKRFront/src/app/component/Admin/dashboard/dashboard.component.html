@@ -17,7 +17,7 @@
 </head>
 <body style=" background: linear-gradient(80deg, #be1526 3%, #526274 100%);" >
 	<!-- [ navigation menu ] start -->
-    <nav class="pcoded-navbar" style=" height: 125%;  background:linear-gradient(80deg, #be1526 3%, #526274  100%)">	
+    <nav class="pcoded-navbar" style=" height: 130%;  background:linear-gradient(80deg, #be1526 3%, #526274  100%)">	
         <div class="navbar-wrapper  ">
         <div class="navbar-content scroll-div " >
             <div >
@@ -43,12 +43,21 @@
           <li class="nav-item pcoded-hasmenu" *ngIf="isADmin()">
             <a href="/employe" class="nav-link ">
                <span class="pcoded-mtext mx-2"> Employés</span></a>
-    <li class="nav-item pcoded-hasmenu">
+               </li>
+               <li class="nav-item pcoded-hasmenu" *ngIf="isADmin()">
+                <a href="/team" class="nav-link ">
+                   <span class="pcoded-mtext mx-2"> Equipes</span></a>
+               </li>
+    <li class="nav-item pcoded-hasmenu" *ngIf="isADmin()">
         <a href="/objectif" class="nav-link ">
            <span class="pcoded-mtext mx-2"> Objectifs</span></a>
     </li>
     <li class="nav-item pcoded-hasmenu">
-        <a href="/calender" class="nav-link ">
+        <a href="/allresultat" class="nav-link ">
+           <span class="pcoded-mtext mx-2"> Resultats Clé</span></a>
+    </li>
+    <li class="nav-item pcoded-hasmenu">
+        <a href="/calender" class="nav-link " *ngIf="isADmin()">
            <span class="pcoded-mtext mx-2"> Calendrier </span></a>
     </li>	
 </ul>
@@ -126,7 +135,7 @@
         </div>
         <!-- [ breadcrumb ] end -->
        <!-- [ Main Content ] start -->
-<div class="row" style="padding: 80px;">
+<div class="row" style="padding: 120px;">
     <div class="col-md-5 mb-4">
         <mat-card style="background: #526274;" *ngIf="isADmin()">
             <mat-card-content>
@@ -183,8 +192,10 @@
             </mat-card-content>
         </mat-card>
     </div>
-    </div>
+    </div>  
+    <app-footer></app-footer>
         </div>
+      
         </div>
         </body>
         </html>

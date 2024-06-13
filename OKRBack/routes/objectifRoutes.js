@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router(); 
 const objectifController = require('../controllers/objectifController'); 
 // Ajout d'un objectif
-router.post("/add", objectifController.addObjectif); 
+router.post("/:equipeId/add", objectifController.addObjectif); 
  // Sélectionner tous les objectifs
 router.get('/objectiflists', objectifController.getAllObjectifs);
    // Mettre à jour un objectif

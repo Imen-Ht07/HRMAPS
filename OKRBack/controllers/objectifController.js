@@ -1,70 +1,114 @@
 const Objectif = require("../models/objectif");
-
+const Resultat = require("../models/resultatCle")
+// Ajouter un objectif
 exports.addObjectif = async (req, res) => {
   try {
-    const objectif = new Objectif(req.body);
-    const newObjectif = await objectif.save();
+    const { description, date_limite, etat_avancement } = req.body;
+    const equipeId = req.params.equipeId; 
+    const newObjectif = new Objectif({
+      description,
+      date_limite,
+      etat_avancement,
+      equipeId
+    });
+
+    await newObjectif.save();
     res.status(201).json({
       ok: true,
       objectif: newObjectif,
     });
   } catch (err) {
-    res.status(401).json({
+    res.status(500).json({
       ok: false,
-      err,
+      message: "Erreur lors de l'ajout de l'objectif",
+      error: err.message,
     });
   }
 };
 
+// Mettre à jour un objectif
 exports.updateObjectif = async (req, res) => {
   try {
-    await Objectif.findOneAndUpdate({ _id: req.params.id }, { $set: req.body });
-    res.status(200).send("Objectif mis à jour avec succès.");
+    const updatedObjectif = await Objectif.findByIdAndUpdate(
+      { _id: req.params.id },
+      { $set: req.body },
+      { new: true }
+    );
+
+    if (!updatedObjectif) {
+      return res.status(404).send("Objectif non trouvé.");
+    }
+
+    res.status(200).json({
+      message: "Objectif mis à jour avec succès.",
+      objectif: updatedObjectif,
+    });
   } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    res.status(500).json({
+      message: "Erreur lors de la mise à jour de l'objectif",
+      error: error.message,
+    });
   }
 };
 
+// Supprimer un objectif
 exports.deleteObjectif = async (req, res) => {
   try {
-    await Objectif.deleteOne({ _id: req.params.id });
-    res.status(200).json({ message: 'Objectif supprimé !' });
+    const result = await Objectif.findByIdAndDelete({ _id: req.params.id });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: 'Objectif non trouvé.' });
+    }
+  // Supprimez les résultats associés
+  await Resultat.deleteMany({ objectifID: objectif._id });
+    res.status(200).json({ message: 'Objectif supprimé avec succès.' });
   } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    res.status(500).json({
+      message: "Erreur lors de la suppression de l'objectif",
+      error: error.message,
+    });
   }
 };
 
+// Récupérer un objectif par ID
 exports.getObjectifByID = async (req, res) => {
   try {
     const objectif = await Objectif.findOne({ _id: req.params.id });
+
     if (!objectif) {
       return res.status(404).json({ message: 'Objectif non trouvé.' });
     }
+
     res.status(200).json(objectif);
   } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    res.status(500).json({
+      message: "Erreur lors de la récupération de l'objectif",
+      error: error.message,
+    });
   }
 };
+
+// Récupérer tous les objectifs
 exports.getAllObjectifs = async (req, res) => {
   try {
-    const objectifs = await Objectif.find({});
-    res.status(200).send(objectifs);
+    const objectifs = await Objectif.find({}).populate('equipeId', 'name');
+    res.status(200).json(objectifs);
   } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    res.status(500).json({
+      message: "Erreur lors de la récupération des objectifs",
+      error: error.message,
+    });
   }
 };
-//fonction count
+
+// Compter les objectifs par statut
 exports.getObjectifCountByStatus = async (req, res) => {
   try {
     const countByStatus = await Objectif.aggregate([
       {
         $group: {
-          _id: "$etat_avancement", // Utilisez le champ correct ici
-          count: { $sum: 1 } // Comptez le nombre de documents pour chaque statut
+          _id: "$etat_avancement",
+          count: { $sum: 1 }
         }
       }
     ]);
@@ -76,22 +120,14 @@ exports.getObjectifCountByStatus = async (req, res) => {
     };
 
     countByStatus.forEach(item => {
-      if (item._id === 'Non commencé') {
-        result['Non commencé'] = item.count;
-      } else if (item._id === 'En cours') {
-        result['En cours'] = item.count;
-      } else if (item._id === 'Terminé') {
-        result['Terminé'] = item.count;
-      }
+      result[item._id] = item.count;
     });
 
-    // Envoyer le résultat au client
-    res.json(result);
+    res.status(200).json(result);
   } catch (error) {
-    res.status(500).send({
+    res.status(500).json({
       message: "Erreur lors de la récupération du nombre d'objectifs par statut",
       error: error.message
     });
   }
 };
-

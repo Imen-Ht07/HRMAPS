@@ -1,5 +1,5 @@
 const Resultat = require('../models/resultatCle');
-
+const Action = require('../models/action')
 const handleErrorResponse = (res, error, message, statusCode = 500) => {
   console.error(message, error);
   res.status(statusCode).json({ message });
@@ -31,6 +31,16 @@ exports.getAllResultats = async (req, res) => {
   }
 };
 
+// Obtenir tous les résultats
+exports.getAll = async (req, res) => {
+  try {
+    const resultats = await Resultat.find({});
+    res.status(200).json(resultats);
+  } catch (error) {
+    handleErrorResponse(res, error, 'Erreur lors de la récupération des résultats');
+  }
+};
+
 // Supprimer un résultat
 exports.deleteResultat = async (req, res) => {
   try {
@@ -38,6 +48,8 @@ exports.deleteResultat = async (req, res) => {
     if (!resultat) {
       return res.status(404).json({ message: 'Résultat non trouvé' });
     }
+     // Supprimez les actions associées
+     await Action.deleteMany({ resultatId: resultat._id });
     res.status(200).json({ message: 'Résultat supprimé avec succès' });
   } catch (error) {
     handleErrorResponse(res, error, 'Erreur lors de la suppression du résultat');

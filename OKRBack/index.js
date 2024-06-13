@@ -12,6 +12,8 @@ const admin = require("./routes/adminRoutes") ;
 const auth = require("./routes/authRoutes");
 const resultat = require("./routes/resultatRoutes");
 const calendar = require ("./routes/calendarRoutes");
+const team = require ("./routes/teamRoutes") ;
+const actionRoutes = require('./routes/actionRoutes');
 //middleware
 app.use(express.json());
 //aide les ports de back et front a s'adapter 
@@ -39,6 +41,8 @@ app.use("/manager", manager);
 app.use("/admin", admin);
 app.use("/resultat",resultat);
 app.use("/calendar",calendar);
+app.use("/team",team);
+app.use("/action",actionRoutes);
 
 
 //appel a database.js 

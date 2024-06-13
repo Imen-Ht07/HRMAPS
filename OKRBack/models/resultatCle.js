@@ -11,7 +11,7 @@ const ResultatSchema = new mongoose.Schema({
   },
   avancement: {
     type: Number,
-    required: true
+    default: 0
   },
   etat_avancement: {  type: String, enum: ['Non commencé', 'En cours', 'Terminé'] }, 
   

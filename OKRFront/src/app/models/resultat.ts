@@ -4,5 +4,6 @@ export class Resultat {
     description!: string;
     avancement!: number;
     etat_avancement!: 'Non commencé'|  'En cours'|  'Terminé';
+    objectifID! :string;
 }
 

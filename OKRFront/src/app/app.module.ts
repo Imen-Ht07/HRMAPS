@@ -29,22 +29,27 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 //components
-import { ObjectifComponent } from 'src/app/component/Manager/objectif/objectif.component';
+import { ObjectifComponent } from 'src/app/component/Admin/Objectifs/objectif/objectif.component';
 import { LoginComponent } from './component/login/login.component';
 import { NotfoundComponent } from './component/notfound/notfound.component';
 import { ProfilComponent } from './component/profil/profil.component';
-import { ObjAddEditComponent } from './component/Manager/obj-add-edit/obj-add-edit.component';
-import { EmployeComponent } from './component/Admin/employe/employe.component';
-import { EmployeAddComponent } from 'src/app/component/Admin/employe-add/employe-add.component';
-import { ManagerAddComponent } from './component/Admin/manager-add/manager-add.component';
-import { ManagerComponent } from './component/Admin/manager/manager.component';
+import { ObjAddEditComponent } from './component/Admin/Objectifs/obj-add-edit/obj-add-edit.component';
+import { EmployeComponent } from './component/Admin/Utilisateur/employe/employe.component';
+import { EmployeAddComponent } from 'src/app/component/Admin/Utilisateur/employe-add/employe-add.component';
+import { ManagerAddComponent } from './component/Admin/Utilisateur/manager-add/manager-add.component';
+import { ManagerComponent } from './component/Admin/Utilisateur/manager/manager.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { ChangePassComponent } from './component/change-pass/change-pass.component';
 import { DashboardComponent } from './component/Admin/dashboard/dashboard.component';
-import { ResultatComponent } from './component/Manager/resultat/resultat.component';
-import { AddResultatComponent } from './component/Employe/add-resultat/add-resultat.component';
+import { ResultatComponent } from './component/Admin/ResultatCle/resultat/resultat.component';
+import { AddResultatComponent } from './component/Admin/ResultatCle/add-resultat/add-resultat.component';
 import { LogoutComponent } from './component/logout/logout.component';
-import { CalenderComponent } from './component/Employe/calender/calender.component';
+import { CalenderComponent } from './component/Admin/calender/calender.component';
+import { TeamComponent } from './component/Admin/Utilisateur/team/team.component';
+import { AddEditTeamComponent } from './component/Admin/Utilisateur/add-edit-team/add-edit-team.component';
+import { AddEditActionComponent } from './component/Employe/add-edit-action/add-edit-action.component';
+import { ActionComponent } from './component/Employe/action/action.component';
+import { AllResultatComponent } from './component/Admin/ResultatCle/all-resultat/all-resultat.component';
 
 
 
@@ -67,6 +72,11 @@ import { CalenderComponent } from './component/Employe/calender/calender.compone
     AddResultatComponent,
     LogoutComponent,
     CalenderComponent,
+    TeamComponent,
+    AddEditTeamComponent,
+    AddEditActionComponent,
+    ActionComponent,
+    AllResultatComponent,
   ],
   imports: [
     BrowserModule,

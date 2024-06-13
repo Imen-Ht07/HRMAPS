@@ -9,8 +9,8 @@ export class ObjectifService {
 
    private baseUrl = 'http://localhost:3000/objectif';
     constructor(private http: HttpClient) { }
-    addObjectif(objectif: Objectif): Observable<any> {
-  return this.http.post(`${this.baseUrl}/add`, objectif);
+    addObjectif(equipeId:string ,objectif: Objectif): Observable<any> {
+  return this.http.post(`${this.baseUrl}/${equipeId}/add`, objectif);
  }
   getAllObjectifs(): Observable<any> {
   return this.http.get(`${this.baseUrl}/objectiflists`);

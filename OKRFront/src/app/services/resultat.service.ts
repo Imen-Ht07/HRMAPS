@@ -21,6 +21,10 @@ export class ResultatService {
   getAllResultats(objectifID: any): Observable<Resultat[]> {
     return this.http.get<Resultat[]>(`${this.baseUrl}/${objectifID}/resultats`); 
   }
+  // Obtenir tous les résultats pour un objectif spécifique
+  getAll(): Observable<Resultat[]> {
+    return this.http.get<Resultat[]>(`${this.baseUrl}/resultats`); 
+  }
 
   // Obtenir un résultat par son ID
   getResultatById(id: any): Observable<Resultat> {
