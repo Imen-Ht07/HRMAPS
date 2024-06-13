@@ -5,11 +5,7 @@
 .main-body {
   padding-top: 20px;
   margin: 0 auto;
-  max-width: 1348px;
-}
-
-mat-form-field {
-  width: 100%;
+  width: 115%;
 }
 
 .action {
@@ -18,4 +14,8 @@ mat-form-field {
 }
   mat-toolbar{
   background-color: #c91c1c;
+  width: 115%;
+}
+mat-form-field{
+  width: 100%;
 }

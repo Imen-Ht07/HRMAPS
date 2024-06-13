@@ -4,9 +4,20 @@ const Employee = require('../models/employe');
 
 exports.createTeam = async (req, res) => {
     try {
-        const { name } = req.body;
-        const managerId = req.params.managerId;
-        const employeeIds = req.params.employeeIds;
+        const { name, managerId, employeeIds } = req.body;
+
+        // Vérifier si le manager existe
+        const manager = await Manager.findById(managerId);
+        if (!manager) {
+            return res.status(404).send({ message: 'Manager not found' });
+        }
+
+        // Vérifier si les employés existent
+        const employees = await Employee.find({ '_id': { $in: employeeIds } });
+        if (employees.length !== employeeIds.length) {
+            return res.status(404).send({ message: 'One or more employees not found' });
+        }
+
         // Créer l'équipe
         const newTeam = new Team({
             name,

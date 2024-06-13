@@ -16,8 +16,8 @@ export class AddEditTeamComponent implements OnInit {
   teamForm!: FormGroup;
   managers: Manager[] = [];
   employees: Employe[] = [];
-  selectedManagerID : string = ''; 
-  selectedEmployeeIDs: string[] = [];
+  selectedManagerID : any = ''; 
+  selectedEmployeeIDs: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,16 +34,16 @@ export class AddEditTeamComponent implements OnInit {
     this.initializeForm();
   }
 
-  onSelectManager(managerID: string): void {
-    this.selectedManagerID = managerID;
+  onSelectManager(managerId: string): void {
+    this.selectedManagerID = managerId;
   }
 
-  onSelectEmployee(employeeID: string): void {
-    const index = this.selectedEmployeeIDs.indexOf(employeeID);
+  onSelectEmployee(employeeIds: string): void {
+    const index = this.selectedEmployeeIDs.indexOf(employeeIds);
     if (index !== -1) {
       this.selectedEmployeeIDs.splice(index, 1);
     } else {
-      this.selectedEmployeeIDs.push(employeeID);
+      this.selectedEmployeeIDs.push(employeeIds);
     }
   }
 
@@ -64,9 +64,11 @@ export class AddEditTeamComponent implements OnInit {
   private initializeForm(): void {
     this.teamForm = this.formBuilder.group({
       name: [this.data?.name || '', Validators.required],
-      manager: [this.data?.manager|| '', Validators.required],
-      employees: [this.data?.employees || '', Validators.required]
+      managerId: [this.data?.managerId|| '', Validators.required],
+      employeeIds: [this.data?.employeeIds || '', Validators.required]
     });
+    this.selectedManagerID = this.data?.managerId || '';
+    this.selectedEmployeeIDs = this.data?.employeeIds || '';
   }
 
   onFormSubmit(): void {
@@ -74,7 +76,7 @@ export class AddEditTeamComponent implements OnInit {
       const formData = this.teamForm.value;
       const operation = this.data 
         ? this.teamService.updateTeam(this.data._id, this.selectedManagerID,this.selectedEmployeeIDs, formData)
-        : this.teamService.addTeam(this.selectedManagerID,this.selectedEmployeeIDs,formData);
+        : this.teamService.addTeam(formData);
 
       operation.subscribe({
         next: () => {

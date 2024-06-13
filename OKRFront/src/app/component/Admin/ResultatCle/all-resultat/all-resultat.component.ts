@@ -37,7 +37,9 @@ export class AllResultatComponent implements OnInit {
   isAdmin(): boolean {
     return this.userService.isAdmin();
   }
-
+  isEmploye(): boolean {
+    return this.userService.isEmploye();
+  }
   loadResultats(): void {
     this.resultatService.getAll().subscribe({
       next: (res) => {

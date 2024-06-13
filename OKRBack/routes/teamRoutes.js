@@ -5,7 +5,7 @@ const router = express.Router();
 const teamController = require('../controllers/teamController');
 
 // Routes pour les opérations sur les équipes
-router.post('/:managerId/:employeeIds/addteam', teamController.createTeam);
+router.post('/addteam', teamController.createTeam);
 router.get('/getteam', teamController.getTeams);
 router.get('/getteambyid/:id', teamController.getTeamById);
 router.put('/:managerId/:employeeIds/updateteam/:id', teamController.updateTeam);

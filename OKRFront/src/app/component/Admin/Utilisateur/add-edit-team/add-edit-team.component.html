@@ -12,7 +12,7 @@
 <!-- Manager Field -->
 <mat-form-field appearance="outline">
     <mat-label>Manager</mat-label>
-    <mat-select formControlName="manager" (selectionChange)="onSelectManager($event.value)">
+    <mat-select formControlName="managerId" (selectionChange)="onSelectManager($event.value)">
         <mat-option *ngFor="let manager of managers" [value]="manager._id">
             {{ manager.nom }} {{ manager.prenom }}
         </mat-option>
@@ -22,7 +22,7 @@
 <!-- Employés Field -->
 <mat-form-field appearance="outline">
     <mat-label>Employés</mat-label>
-    <mat-select formControlName="employees" multiple (selectionChange)="onSelectEmployee($event.value)">
+    <mat-select formControlName="employeeIds" multiple (selectionChange)="onSelectEmployee($event.value)">
         <mat-option *ngFor="let employe of employees" [value]="employe._id">
             {{ employe.nom }} {{ employe.prenom }}
         </mat-option>

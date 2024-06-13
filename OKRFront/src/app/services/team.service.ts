@@ -12,8 +12,8 @@ export class TeamService {
   constructor(private http: HttpClient) { }
 
   // Ajouter une équipe
-  addTeam(managerId: string, employeeIds: string[], team: Team): Observable<Team> {
-    const url = `${this.apiUrl}/${managerId}/${employeeIds.join(',')}/addteam`;
+  addTeam(team: Team): Observable<Team> {
+    const url = `${this.apiUrl}/addteam`;
     return this.http.post<Team>(url, team);
   }
 

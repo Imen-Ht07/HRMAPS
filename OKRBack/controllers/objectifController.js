@@ -59,8 +59,6 @@ exports.deleteObjectif = async (req, res) => {
     if (result.deletedCount === 0) {
       return res.status(404).json({ message: 'Objectif non trouvé.' });
     }
-  // Supprimez les résultats associés
-  await Resultat.deleteMany({ objectifID: objectif._id });
     res.status(200).json({ message: 'Objectif supprimé avec succès.' });
   } catch (error) {
     res.status(500).json({
